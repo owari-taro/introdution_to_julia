@@ -156,3 +156,10 @@ function simulate(alpha::Float64)::Array
     end
     return x
 end
+
+
+alphas=[0.0, 0.8, 0.98]
+p = plot() # ]
+for alpha in alphas
+    x=simulate(alpha)
+    !plot(p,x,label = "alpha = $α")
