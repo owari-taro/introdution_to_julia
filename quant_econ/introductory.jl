@@ -4,7 +4,7 @@ randn()
 
 
 
-Starting with the most direct version, and pretending we are in a world where randn can only return a single value
+#Starting with the most direct version, and pretending we are in a world where randn can only return a single value
 
 # poor style
 n = 10
@@ -78,9 +78,6 @@ end
 
 
 
-
-
-
 using NLsolve
 
 
@@ -93,3 +90,60 @@ sol = fixedpoint(f, [0.8])
 
 println("Fixed point = $(sol.zero), and |f(x) - x| = $(norm(f(sol.zero) - sol.zero)) in " *
         "$(sol.iterations) iterations")
+
+
+
+function factorial12(n::Int)
+    res=1
+    for i in 1:n
+        res*=i
+    end
+    return res
+end
+
+
+
+function calc_pi(n::Int)
+    count=0
+    uniform_=rand(2*n)
+    for i in 1:n
+        x,y=uniform_[2*(i)-1],uniform_[2*i]
+        if sqrt((x-0.5)^2+(y-0.5)^2)<=0.5
+            count+=1
+        end
+    end
+    return 4*count/n
+end
+
+function binominal(n::Int,p::Float64)
+    count=0
+    uniform_=rand(n)
+    for i in 1:n
+
+        if uniform[i]<=p
+            count+=1
+        end
+    end
+    return count
+end
+
+
+
+
+function random_device()
+    randoms=rand(10)
+    println(randoms)
+    count=0
+    for i in 1:10
+        if randoms[i]<=0.5
+            count+=1
+            if count==3
+                return 1
+            end
+        else
+            count=0
+
+        end
+    end
+    return 0
+end
