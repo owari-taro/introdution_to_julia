@@ -49,3 +49,9 @@ end
 twice(f, x) = f(f(x))  # applies f to itself twice
 f(x) = x^2
 @show twice(f, 2.0)
+
+
+double(f,g,x)=f(g(x))
+f(x)=x^2
+g(x)=x^3
+@show double(f,g,3)
