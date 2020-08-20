@@ -41,7 +41,7 @@ f(x) = sin(1 / x)
 function chisq(k)
     @assert k > 0
     z = randn(k)
-    return sum(z -> z^2, z)  
+    return sum(z -> z^2, z)
 end
 
 
@@ -55,3 +55,37 @@ double(f,g,x)=f(g(x))
 f(x)=x^2
 g(x)=x^3
 @show double(f,g,3)
+
+
+function snapabove(g,a::Float64)
+    function f(x)
+        if x>a
+            return g(x)
+        else
+            return g(a)
+
+        end
+    end
+    return f
+end
+
+f(x) = x^2
+h = snapabove(f, 2.0)
+
+using Plots
+gr(fmt=:png);
+plot(h, 0.0:0.1:3.0)
+
+
+#execcerzi1
+a=[1,2,3,4,5]
+b=[2,3,4,5,6]
+tmp=0
+for (i,j) in zip(a,b)
+    tmp+=i*j
+end
+println(tmp)
+
+
+# or
+sum(i*j for (i,j) in zip(a,b))
