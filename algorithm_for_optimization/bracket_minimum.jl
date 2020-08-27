@@ -7,6 +7,7 @@ function bracket_minimum(f,x=0;s=1e-2,k=2.0)
         ya,yb=yb,ya
         s=-s
     end
+    
     while true
         c,yc=b+s,f(b+s)
         if yc>yb
@@ -15,3 +16,4 @@ function bracket_minimum(f,x=0;s=1e-2,k=2.0)
         a,ya,b,yb=b,yb,c,yc
         s*=k
     end
+end
