@@ -1,5 +1,5 @@
 function parent(index)
-    return trunc(Int, index/2)
+    return trunc(Int, index / 2)
 end
 
 
@@ -8,28 +8,36 @@ function left(index)
 end
 
 function right(index)
-    return 2index+1
+    return 2index + 1
 end
+
 
 mutable struct Heap
     heap_size::Integer
     data::Array
 end
 
-function max_heaptify(heap::Heap,index::Integer)
-    l=left(index)
-    r=right(index)
-    if l<=heap.heap_size && heap.data[l]>heap.data[index]
-        largegst=l
+function max_heaptify(heap::Heap, index::Integer)
+    l = left(index)
+    r = right(index)
+    if l <= heap.heap_size && heap.data[l] > heap.data[index]
+        largegst = l
     else
-        largest=index
+        largest = index
     end
-    if r<=heap.heap_size && heap.data[r]>heap.data[largest]
-        largest=r
+    if r <= heap.heap_size && heap.data[r] > heap.data[largest]
+        largest = r
     end
-    if largest!=index
+    if largest != index
         #exchange
-        heap.data[index],heap.data[largest]=heap.data[largest],heap.data[index]
-        max_heaptify(heap,largest)
+        heap.data[index], heap.data[largest] = heap.data[largest], heap.data[index]
+        max_heaptify(heap, largest)
     end
 end
+
+
+
+function build_max_heap(heap::Heap)
+    heap.heap_size=length(heap.data)
+    for  i in trunc(heap.heapsize/2):-1:1
+        max_heaptify(heap,i)
