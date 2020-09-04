@@ -28,6 +28,8 @@ function max_heaptify(heap::Heap,index::Integer)
         largest=r
     end
     if largest!=index
+        #exchange
+        heap.data[index],heap.data[largest]=heap.data[largest],heap.data[index]
         max_heaptify(heap,largest)
     end
 end
